@@ -5,6 +5,8 @@ import com.zhiyou100.resonse.ResponseCode;
 import com.zhiyou100.service.UserService;
 import com.zhiyou100.util.ResponseUtil;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * @ClassName UserController
@@ -24,6 +25,7 @@ import java.sql.SQLException;
 @Controller
 @RequestMapping("/login")
 public class UserController {
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     UserService userService;
     @RequestMapping("/login.do")
@@ -44,11 +46,8 @@ public class UserController {
                 ResponseUtil.responseSuccess(resp, "login success", ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
                 return;
             }
-        } catch (SQLException e) {
-            //记录异常
-            log.error("login error:",e);
-            ResponseUtil.responseFailure(resp,"server error",ResponseCode.LOGIN_ERROR_INVALID_PARAMETER);
-            return;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
