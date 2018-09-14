@@ -24,4 +24,9 @@ public class UserService {
         User user = userdao.selectByPrimaryKey(usId);
         return user;
     }
+
+    public int insertSelective(User user) {
+        int row = userdao.insertSelective(user);
+        return row;
+    }
 }
