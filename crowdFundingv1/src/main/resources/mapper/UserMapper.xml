@@ -32,6 +32,12 @@
     from user
     where us_name = #{usName,jdbcType=VARCHAR} and us_password = #{usPassword,jdbcType=VARCHAR}
   </select>
+  <select id="selectByEmail" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where us_email = #{usEmail,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where us_id = #{usId,jdbcType=INTEGER}

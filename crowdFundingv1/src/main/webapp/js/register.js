@@ -16,18 +16,26 @@ function verifyCode() {
     }
 
     $.ajax({
+        type:"post",
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         url:"login/verifyCode.do",
         method:"post",
         data:{
             cellphone:cellphone,
-            usName:user
+            usName:user,
+            password:md5(password)
         },
         dataType:"json",
         success:function(resp){
-            console.log(resp)
+            /*console.log(resp)*/
             if (resp['isSuccess']){
+                if (cellphone.indexOf("@")!=-1) {
+                    alert("邮箱已发送请注意查收验证")
+                    window.location.href="admin.html"
+                }
                 alert("验证码已发送")
             }else{
+
                 alert(resp['error'])
             }
         },
@@ -58,6 +66,8 @@ function register() {
         alert("请输入验证码")
     }
     $.ajax({
+        type:"post",
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
         url:"login/register.do",
         method:"post",
         data:{
@@ -71,7 +81,6 @@ function register() {
             console.log(resp)
             if (resp['isSuccess']){
                 alert("注册成功")
-
                 /* window.location.href="admin.html"*/
             }else if (!resp['isSuccess']) {
                 alert(resp['content'])

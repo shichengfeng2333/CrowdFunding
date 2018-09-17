@@ -1,7 +1,8 @@
 package com.zhiyou100.entity;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
 
+import java.util.Date;
 public class User {
     private Integer usId;
 

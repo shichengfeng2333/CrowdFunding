@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
  * @Date 2018/9/14 11:36
  * @Version 1.0
  **/
+@Service
 public class SMSService {
 /*    public static void main(String[] args) throws ClientException {
         SMSService smsService = new SMSService();

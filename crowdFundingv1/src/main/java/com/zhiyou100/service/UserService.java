@@ -29,4 +29,13 @@ public class UserService {
         int row = userdao.insertSelective(user);
         return row;
     }
+
+    public String findByEmail(String email) {
+        User user = userdao.selectByEmail(email);
+        if (user==null){
+            return null;
+        }
+        String usCode = user.getUsCode();
+        return usCode;
+    }
 }

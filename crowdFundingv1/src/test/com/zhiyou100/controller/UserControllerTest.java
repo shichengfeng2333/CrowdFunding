@@ -30,13 +30,20 @@ public class UserControllerTest {
     @Test
     public void verifyCode() throws Exception {
         mockMvc.perform(post("/login/verifyCode.do")
-                .param("cellphone","15036283367")
+                .param("cellphone","18237219231")
                 .param("usName","石成峰"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void insertUser() {
+    public void insertUser() throws Exception {
+        mockMvc.perform(post("/login/register.do")
+                .param("cellphone","18237219231")
+                .param("usName","石成峰")
+                .param("password","123456")
+                .param("code","903024"))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }

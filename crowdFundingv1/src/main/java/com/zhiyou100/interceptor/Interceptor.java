@@ -17,6 +17,9 @@ import javax.servlet.http.HttpSession;
 public class Interceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
             return true;
